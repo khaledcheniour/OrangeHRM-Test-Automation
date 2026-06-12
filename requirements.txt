@@ -1,0 +1,21 @@
+# ===========================================================================
+# OrangeHRM Test Automation - Python Dependencies
+# Install everything with:  pip install -r requirements.txt
+# ===========================================================================
+
+# --- Core test framework ---
+pytest==8.3.4                 # Test runner
+pytest-playwright==0.6.2      # Playwright integration for pytest (browser/page fixtures)
+playwright==1.49.1            # Browser automation engine
+
+# --- Helpful pytest plugins ---
+pytest-html==4.1.1            # Generate self-contained HTML test reports
+pytest-xdist==3.6.1           # Run tests in parallel (e.g. -n auto)
+pytest-rerunfailures==15.0    # Automatically retry flaky tests
+
+# --- Test data & utilities ---
+faker==33.1.0                 # Generate realistic fake data (names, addresses, ...)
+python-dotenv==1.0.1          # Load configuration from a .env file
+
+# --- (Optional) nicer reporting - uncomment if you want to try Allure in Week 4 ---
+# allure-pytest==2.13.5
