@@ -48,3 +48,6 @@ def test_login_with_empty_credentials(page):
 
     # Assert: both the username and password fields report "Required".
     assert login_page.required_field_error_count() == 2
+
+
+

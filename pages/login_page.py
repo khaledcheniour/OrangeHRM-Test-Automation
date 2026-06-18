@@ -17,7 +17,7 @@ from pages.base_page import BasePage
 
 class LoginPage(BasePage):
     """Drives a login attempt and exposes the resulting page state."""
-
+ 
     PATH = "/auth/login"
 
     # --- Locators (kept together at the top so they are easy to maintain) ---
@@ -49,6 +49,13 @@ class LoginPage(BasePage):
     def is_loaded(self) -> bool:
         """True when the login form's title is visible."""
         return self.wait_until_visible(self._LOGIN_TITLE)
+    
+    #function to return the title of the login form
+    @property
+    def login_title(self) -> str:
+        """Return the visible login form title text."""
+        return self.text_of(self._LOGIN_TITLE)
+    
 
     def login_succeeded(self) -> bool:
         """True if we navigated to the Dashboard after logging in.
