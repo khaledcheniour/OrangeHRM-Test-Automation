@@ -10,7 +10,7 @@ follow when you implement the Week-3 features.
 
 from __future__ import annotations
 
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 
 from pages.base_page import BasePage
 
@@ -30,7 +30,7 @@ class LoginPage(BasePage):
     _ERROR_ALERT = ".oxd-alert-content-text"
     # Shown under each empty required field on an empty submit.
     _FIELD_ERROR = ".oxd-input-field-error-message"
-
+    _DASHBOARD_HEADING = "text=Dashboard" 
     def __init__(self, page: Page) -> None:
         super().__init__(page)
 
@@ -82,3 +82,11 @@ class LoginPage(BasePage):
         """How many 'Required' field errors are shown (after an empty submit)."""
         self.wait_until_visible(self._FIELD_ERROR)
         return self.page.locator(self._FIELD_ERROR).count()
+    
+    #I added this function to return the locator of the required field errors
+    @property
+    def required_field_errors(self) -> Locator:
+        return self.page.locator(self._FIELD_ERROR)
+    @property
+    def dashboard(self) -> Locator:
+        return self.page.locator(self._DASHBOARD_HEADING)
