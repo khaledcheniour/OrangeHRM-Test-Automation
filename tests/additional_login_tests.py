@@ -8,14 +8,14 @@ from playwright.sync_api import expect
 def test_login_with_username_containing_spaces_at_end(page, standard_user):
     """A user can log in with valid credentials and reach the Dashboard."""
     # Arrange / Act
-    page.set_default_timeout(60000)
+    
     login_page = LoginPage(page)
     login_page.login(standard_user["username"]+"     ", standard_user["password"])
 
     # Assert: landing on the Dashboard proves we are authenticated.
 
-    assert login_page.login_succeeded(), "Expected to reach the Dashboard."
-    # expect(login_page.dashboard).to_be_visible()
+    # assert login_page.login_succeeded(), "Expected to reach the Dashboard."
+    expect(login_page._DASHBOARD_HEADING).to_be_visible()
 
 @pytest.mark.login
 def test_login_with_spaces(page):

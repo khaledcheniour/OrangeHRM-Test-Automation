@@ -30,7 +30,7 @@ class LoginPage(BasePage):
     _ERROR_ALERT = ".oxd-alert-content-text"
     # Shown under each empty required field on an empty submit.
     _FIELD_ERROR = ".oxd-input-field-error-message"
-    _DASHBOARD_HEADING = "text=Dashboard" 
+    _DASHBOARD_HEADING ="h1:has-text('Dashboard')"
     def __init__(self, page: Page) -> None:
         super().__init__(page)
 
@@ -87,6 +87,3 @@ class LoginPage(BasePage):
     @property
     def required_field_errors(self) -> Locator:
         return self.page.locator(self._FIELD_ERROR)
-    @property
-    def dashboard(self) -> Locator:
-        return self.page.locator(self._DASHBOARD_HEADING)
