@@ -14,8 +14,8 @@ def test_login_with_username_containing_spaces_at_end(page, standard_user):
 
     # Assert: landing on the Dashboard proves we are authenticated.
 
-    # assert login_page.login_succeeded(), "Expected to reach the Dashboard."
-    expect(login_page._DASHBOARD_HEADING).to_be_visible()
+    assert login_page.login_succeeded(), "Expected to reach the Dashboard."
+    
 
 @pytest.mark.login
 def test_login_with_spaces(page):
@@ -25,8 +25,7 @@ def test_login_with_spaces(page):
     login_page.login("     ", "     ")
 
     # Assert: both the username and password fields report "Required".
-    # assert login_page.required_field_error_count() == 2
-    expect(login_page.required_field_errors).to_have_count(2)
+    assert login_page.required_field_error_count() == 2, "Expected both fields to report 'Required'."
     
 
 @pytest.mark.login
@@ -37,6 +36,6 @@ def test_login_with_one_empty_credential(page, standard_user):
     login_page.login(standard_user["username"], "")
 
     # Assert: only password field report "Required".
-    # assert login_page.required_field_error_count() == 1
-    expect(login_page.required_field_errors).to_have_count(1)
+    assert login_page.required_field_error_count() == 1, "Expected only the password field to report 'Required'."
+
 
