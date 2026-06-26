@@ -149,3 +149,6 @@ class BasePage:
         self.page.locator(
             f'.oxd-select-dropdown .oxd-select-option:has-text("{option}")'
         ).first.click()
+    def get_elements_text(self, selector: str) -> list[str]:
+        """Return a list of trimmed inner text from all elements matching ``selector``."""
+        return [text.strip() for text in self.page.locator(selector).all_inner_texts()]

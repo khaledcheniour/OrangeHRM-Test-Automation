@@ -32,6 +32,8 @@ class Candidate:
     first_name: str
     last_name: str
     email: str
+    phone: str
+    vacancy: str
 
 
 def generate_employee() -> Employee:
@@ -44,14 +46,18 @@ def generate_employee() -> Employee:
         first_name=_faker.first_name(),
         middle_name=_faker.first_name(),
         last_name=_faker.last_name(),
+
     )
 
+VALID_VACANCIES = ["Sales Representative", "qa intern", "Software Engineer", "sr tester", "Senior QA Lead" , "Senior support specialist"]
 
 def generate_candidate() -> Candidate:
     """Create a brand-new random candidate with a guaranteed-unique email."""
     first_name = _faker.first_name()
     last_name = _faker.last_name()
+    phone=_faker.phone_number()
     # A UUID fragment keeps the email unique across runs.
     unique = uuid.uuid4().hex[:10]
     email = f"{first_name}.{last_name}.{unique}@example.com".lower()
-    return Candidate(first_name=first_name, last_name=last_name, email=email)
+    vacancy = _faker.random_element(elements=VALID_VACANCIES)
+    return Candidate(first_name=first_name, last_name=last_name, email=email, phone=phone, vacancy=vacancy)
