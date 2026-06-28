@@ -11,7 +11,8 @@ class DashboardPage(BasePage):
     PATH = "/dashboard/index"
     _Dashboard_Header = ".oxd-topbar-header-breadcrumb-module"
     _menu_items = ".oxd-main-menu-item--name"
-    
+    _PASSWORD_INPUT = 'input[name="password"]'
+    _administrator_access_header = "h6.orangehrm-admin-access-title"
     def __init__(self, page: Page) -> None:
         super().__init__(page)
     
