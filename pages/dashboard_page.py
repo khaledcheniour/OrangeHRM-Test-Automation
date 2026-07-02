@@ -20,10 +20,10 @@ class DashboardPage(BasePage):
     
     def is_logged_in(self) -> bool:
         """Check if user is logged in by verifying Dashboard is accessible."""
-        return self.is_visible(self._Dashboard_Header)  #make sure the dashboard header is visible to confirm login
+        return self.wait_until_visible(self._Dashboard_Header)  #make sure the dashboard header is visible to confirm login
     
     def is_loaded(self) -> bool:
-        return self.is_visible(self._Dashboard_Header)
+        return self.wait_until_visible(self._Dashboard_Header)
     
     def logout(self) -> None:
         """Log out the user."""
