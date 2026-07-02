@@ -44,7 +44,7 @@ class Settings:
     base_url: str = os.getenv(
         "BASE_URL", "https://opensource-demo.orangehrmlive.com/web/index.php"
     )
-    default_timeout: int = _get_int("DEFAULT_TIMEOUT", 15_000)
+    default_timeout: int = _get_int("DEFAULT_TIMEOUT", 30_000)
 
     # The administrator account that ships with the OrangeHRM demo. It always
     # exists and has full access, which makes it the reliable way to test the
