@@ -13,12 +13,13 @@ Key ideas for the interns:
 """
 
 from __future__ import annotations
+from random import random
 
 from playwright.sync_api import Page
 from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
 
 from config.config import settings
-
+import random
 
 class BasePage:
     """Parent class for all page objects.
@@ -152,3 +153,25 @@ class BasePage:
     def get_elements_text(self, selector: str) -> list[str]:
         """Return a list of trimmed inner text from all elements matching ``selector``."""
         return [text.strip() for text in self.page.locator(selector).all_inner_texts()]
+
+    def select_random_dropdown_option(self, label: str) -> str:
+        """Pick a random option from the oxd dropdown whose label is ``label``.
+        
+        Returns the text of the selected option so the test can verify what was chosen.
+        """
+        group = self.page.locator(
+            f'.oxd-input-group:has(label:text-is("{label}"))'
+        )
+        group.locator(".oxd-select-text").click()
+        
+        # Get all available options
+        options = self.page.locator(
+            '.oxd-select-dropdown .oxd-select-option'
+        ).all()
+        
+        # Select a random one
+        random_option = random.choice(options)
+        selected_text = random_option.inner_text().strip()
+        random_option.click()
+        
+        return selected_text
