@@ -1,5 +1,6 @@
-pull_request:
-  branches: [main]
+on:
+  pull_request:
+    branches: [main]
 
 jobs:
   test:
@@ -35,7 +36,7 @@ jobs:
           # If your local .env keys are needed, store them in GitHub Secrets and load them here
           BASE_URL: ${{ secrets.BASE_URL }}
         run: |
-          pytest -m smoke --html=reports/report.html --self-contained-html
+          pytest tests/test_login.py::test_login_with_valid_credentials -m smoke --html=reports/report.html --self-contained-html
 
       # 6. Upload Test Reports & Artifacts (Always run this, even if tests fail)
       - name: Upload Test Report
