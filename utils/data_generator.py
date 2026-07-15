@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass
-
+from pages.base_page import BasePage
 from faker import Faker
 
 # One shared Faker instance.
@@ -33,7 +33,7 @@ class Candidate:
     last_name: str
     email: str
     phone: str
-    vacancy: str
+    
 
 
 def generate_employee() -> Employee:
@@ -49,7 +49,7 @@ def generate_employee() -> Employee:
 
     )
 
-VALID_VACANCIES = ["Sales Representative", "qa intern", "Software Engineer", "sr tester", "Senior QA Lead" , "Senior support specialist"]
+
 
 def generate_candidate() -> Candidate:
     """Create a brand-new random candidate with a guaranteed-unique email."""
@@ -59,5 +59,4 @@ def generate_candidate() -> Candidate:
     # A UUID fragment keeps the email unique across runs.
     unique = uuid.uuid4().hex[:10]
     email = f"{first_name}.{last_name}.{unique}@example.com".lower()
-    vacancy = _faker.random_element(elements=VALID_VACANCIES)
-    return Candidate(first_name=first_name, last_name=last_name, email=email, phone=phone, vacancy=vacancy)
+    return Candidate(first_name=first_name, last_name=last_name, email=email, phone=phone)
