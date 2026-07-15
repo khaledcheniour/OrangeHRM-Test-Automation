@@ -3,7 +3,7 @@ import pytest
 from pages.login_page import LoginPage
 from playwright.sync_api import expect
 
-@pytest.mark.login
+
 @pytest.mark.parametrize(
     "username, password, expected_field_errors, expected_banner_error",
     [

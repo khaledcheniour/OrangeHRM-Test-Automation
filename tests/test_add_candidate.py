@@ -4,8 +4,8 @@ from pages.recruitment_add_candidate_page import AddCandidatePage
 from utils.data_generator import Candidate
 
 
-@pytest.mark.smoke
-@pytest.mark.login
+
+@pytest.mark.recruitment
 def test_add_candidate(dashboard: DashboardPage, new_candidate: Candidate):
     dashboard.open_menu("Recruitment")
 

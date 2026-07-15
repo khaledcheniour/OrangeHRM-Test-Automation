@@ -16,7 +16,7 @@ def test_login_with_username_containing_spaces_at_end(page, standard_user):
 
     assert login_page.login_succeeded(), "Expected to reach the Dashboard."
     
-
+@pytest.mark.smoke
 @pytest.mark.login
 def test_login_with_spaces(page):
     """Submitting spaces in fields shows a 'Required' message under each one."""

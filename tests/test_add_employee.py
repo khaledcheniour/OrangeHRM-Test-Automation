@@ -5,8 +5,8 @@ from pages.pim_add_employee_page import addemp as AddEmployeePage
 from utils.data_generator import Employee
 from pages.pim_employee_list_page import EmployeeListPage
 
-@pytest.mark.smoke
-@pytest.mark.login
+
+@pytest.mark.pim
 def test_add_employee_same_id(dashboard: DashboardPage, new_employee: Employee):
     dashboard.open_menu("PIM")
 
@@ -25,7 +25,7 @@ def test_add_employee_same_id(dashboard: DashboardPage, new_employee: Employee):
     Employee_list_page.open_list()
     Employee_list_page.search_employee_id(a)
     assert Employee_list_page.get_records_found() == "(1) Record Found", "Employee not found in the list after adding"
-
+@pytest.mark.pim
 def test_add_employee_required_fields(dashboard: DashboardPage):
     dashboard.open_menu("PIM")
 

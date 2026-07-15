@@ -3,7 +3,7 @@ from pages.dashboard_page import DashboardPage
 from pages.pim_employee_list_page import EmployeeListPage
 
 @pytest.mark.smoke
-@pytest.mark.login
+@pytest.mark.pim
 
 def test_employee_list_page_loads_and_list_nonempty(dashboard: DashboardPage):
     dashboard.open_menu("PIM")
@@ -15,7 +15,7 @@ def test_employee_list_page_loads_and_list_nonempty(dashboard: DashboardPage):
     assert employee_list_page.is_loaded(), "Employee List page is not loaded"
     assert employee_list_page.number_of_records() >= 0, "Number of records should be non-negative"
 
-
+@pytest.mark.pim
 def test_Id_non_empty(dashboard: DashboardPage):
     dashboard.open_menu("PIM")
 

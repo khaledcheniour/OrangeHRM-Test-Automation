@@ -4,8 +4,8 @@ from pages.dashboard_page import DashboardPage
 from pages.admin_user_page import adminuserPage
 from pages.pim_add_employee_page import addemp as AddEmployeePage
 from utils.data_generator import Employee
-@pytest.mark.smoke
-@pytest.mark.login
+
+@pytest.mark.admin
 def test_search_user_by_username(dashboard: DashboardPage):
     dashboard.open_menu("Admin")
 
@@ -22,7 +22,7 @@ def test_search_user_by_username(dashboard: DashboardPage):
     records_found = admin_user_page.number_of_records()
     assert records_found > 0, f"No records found for username '{username_to_search}'" 
 
-    
+@pytest.mark.admin   
 def test_add_new_admin(page,dashboard: DashboardPage, new_employee: Employee):
     dashboard.open_menu("PIM")
 

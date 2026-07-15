@@ -34,7 +34,7 @@ jobs:
           BASE_URL: ${{ secrets.BASE_URL }}
         run: |
           mkdir -p reports
-          pytest tests/test_login.py::test_login_with_valid_credentials -m smoke --html=reports/report.html --self-contained-html
+          pytest -m smoke --html=reports/report.html --self-contained-html
 
       - name: Upload Test Report
         if: always()

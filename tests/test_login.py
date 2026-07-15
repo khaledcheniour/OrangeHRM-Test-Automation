@@ -26,7 +26,7 @@ def test_login_with_valid_credentials(page, standard_user):
     # Assert: landing on the Dashboard proves we are authenticated.
     assert login_page.login_succeeded(), "Expected to reach the Dashboard."
 
-
+@pytest.mark.smoke
 @pytest.mark.login
 def test_login_with_invalid_credentials(page):
     """Logging in with a wrong password shows the 'Invalid credentials' banner."""
