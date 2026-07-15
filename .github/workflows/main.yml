@@ -1,0 +1,47 @@
+pull_request:
+  branches: [main]
+
+jobs:
+  test:
+    name: Run Playwright Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      # 2. Set up Python 3.10
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+          cache: "pip" # Speeds up subsequent runs by caching dependencies
+
+      # 3. Install Python dependencies
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      # 4. Install Playwright browser binaries (Ubuntu requires system dependencies too)
+      - name: Install Playwright Browsers
+        run: |
+          playwright install --with-deps chromium
+
+      # 5. Run pytest with the smoke marker (or full suite)
+      - name: Run Tests
+        env:
+          # If your local .env keys are needed, store them in GitHub Secrets and load them here
+          BASE_URL: ${{ secrets.BASE_URL }}
+        run: |
+          pytest -m smoke --html=reports/report.html --self-contained-html
+
+      # 6. Upload Test Reports & Artifacts (Always run this, even if tests fail)
+      - name: Upload Test Report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: playwright-test-report
+          path: reports/
+          retention-days: 7
