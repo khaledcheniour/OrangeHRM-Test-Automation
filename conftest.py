@@ -18,7 +18,7 @@ import pytest
 from playwright.sync_api import Page
 
 from config.config import settings
-from pages.dashboard_page import DashboardPage
+#from pages._page import DashboardPage
 from pages.login_page import LoginPage
 from utils.data_generator import Candidate, Employee, generate_candidate, generate_employee
 
